@@ -26,7 +26,7 @@ $ pip install  -r requirements.txt
 # **éQçl**
 ---
 
-[nurse schedulig program]
+[nurse schedulig program](https://developers.google.com/optimization/scheduling/employee_scheduling)  
 [constrainted queen](https://developers.google.com/optimization/cp/queens)  
 [mixed integer programming](https://developers.google.com/optimization/assignment/assignment_mip)  
 
