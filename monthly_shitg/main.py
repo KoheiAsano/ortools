@@ -18,7 +18,7 @@ if __name__ == "__main__":
     while weekcount<4:
         desiredShift = MShift[weekcount]
         Feedback ,lastfeed = create_weekShift(desiredShift,Feedback)
-        if input("Do you wanna create another Shift?[y/]") == "y":
+        if input("Do you reject this?[y/]") == "y":
             Feedback,lastfeed = create_weekShift(desiredShift,Feedback)
     
         else:

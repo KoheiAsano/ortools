@@ -18,7 +18,7 @@ num_weekends = 2
 
 #  workerSalary=[w0,w1,w2,w3,w4,w5,w6,w7,w8,w9]
 workerSalary = [Slr.MN, Slr.MN,Slr.MN, Slr.TRE,Slr.SY0, Slr.SY0, Slr.SY0,Slr.SY1, Slr.SY2, Slr.EX]
-
+days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
 def create_weekShift(desiredShift,Feedback):
     #create solver
     solver = pywraplp.Solver('ShiftMIPSolver', pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
@@ -61,24 +61,31 @@ def create_weekShift(desiredShift,Feedback):
         
     #optimize
     sol = solver.Solve()
-    
+
+
     #out put Shift
-    for j in range(num_days):
-        for i in range(num_workers):
-            if x[i, j].solution_value() > 0:
-                print ('Worker {} assigned to day {} Cost = {}'.format(i,j,workerSalary[i].value * desiredShift[i][j].value *Feedback[i]))
-        print("\n")
-        
+    #for j in range(num_days):
+        #for i in range(num_workers):
+            #if x[i, j].solution_value() > 0:
+                #print ('Worker {} assigned to day {} Cost = {}'.format(i,j,workerSalary[i].value * desiredShift[i][j].value *Feedback[i]))
+        #print("\n")
     #create each worker's shift, count worker's continuous shift.
+    print("\n")
     continuouscount = array([])
     Shift = []
     for i in range(num_workers):
         PersonalShift = []
         for j in range(num_days):
             PersonalShift.append(int(x[i,j].solution_value()))
-        print("Worker {} 一週間の勤務数合計{} days".format(i,PersonalShift.count(1)))
+        if workerSalary[i] == Slr.MN:
+            print("Officer {} ".format(i))
+        else:
+            print("Worker {} ".format(i))
         workdays = [k for k, x in enumerate(PersonalShift) if x == 1]
-        print("勤務曜日{}".format(workdays))
+        stringdays = [days[i] for i in workdays]
+        print("勤務曜日{}".format(stringdays))
+        print("一週間の勤務数合計{} days".format(PersonalShift.count(1)))
+        print("\n")
         Shift.append(PersonalShift)
         con = 0
         for y in range(len(workdays)-1):
@@ -86,8 +93,8 @@ def create_weekShift(desiredShift,Feedback):
                 con += 1
         continuouscount = append(continuouscount,con)
     continuouscount = continuouscount / 10
-    print("Worker毎の連勤数によるFeedback {}".format(continuouscount))
-    print("\n")
+    #print("Worker毎の連勤数によるFeedback {}".format(continuouscount))
+    #print("\n")
     
     
     #count defference between worker's desire and real Shift.
@@ -99,10 +106,10 @@ def create_weekShift(desiredShift,Feedback):
                 score +=3
         scorelist = append(scorelist,score)
     scorelist = scorelist /10
-    print("公休希望(P)出したけど出勤した日数によるFeedback\n ",scorelist)
+    #print("公休希望(P)出したけど出勤した日数によるFeedback\n ",scorelist)
     
     Feedback = Feedback + scorelist + continuouscount
-    print("次のFeedback rate{}".format(Feedback))
+    #print("次のFeedback rate{}".format(Feedback))
     lastfeed = array([1,1,1,1,1,1,1,1,1,1]) + scorelist + continuouscount
     return Feedback,lastfeed
 
