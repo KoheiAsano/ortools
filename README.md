@@ -11,6 +11,47 @@ Google Optimization Tools‚ğg‚Á‚Ä‚P‚Ol‚Ì]‹Æˆõ‚ğ§–ñğŒ‚ÉŠî‚Ã‚¢‚ÄAˆêTŠÔ‚¸‚ÂŠ
 ```
 $ pip install  -r requirements.txt
 ```  
+
+# **monthly_shiftg**
+---
+
+```
+$ python main.py
+```  
+
+```
+Officer 0
+‹Î–±—j“ú['Tue', 'Thu', 'Fri', 'Sat']
+ˆêTŠÔ‚Ì‹Î–±”‡Œv4 days
+
+
+Officer 1
+‹Î–±—j“ú['Sat', 'Sun']
+ˆêTŠÔ‚Ì‹Î–±”‡Œv2 days
+
+
+Officer 2
+‹Î–±—j“ú['Mon', 'Wed', 'Sun']
+ˆêTŠÔ‚Ì‹Î–±”‡Œv3 days
+
+
+Worker 3
+‹Î–±—j“ú['Wed', 'Thu', 'Fri', 'Sun']
+ˆêTŠÔ‚Ì‹Î–±”‡Œv4 days
+
+
+Worker 4
+‹Î–±—j“ú['Mon', 'Sun']
+ˆêTŠÔ‚Ì‹Î–±”‡Œv2 days
+~~~
+
+
+Do you reject this?[y/]
+```
+ÅŒã‚ÌH‚Åy‚ğ‰Ÿ‚¹‚Î‘I‚Ñ’¼‚µB
+4TŠÔ•ªŒˆ’è‚µ‚½‚çI—¹B
+
+
 # **‰Šú§–ñ**
 ---
 
